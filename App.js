@@ -7,8 +7,11 @@ import {
     Modal
 } from "react-native";
 
+import {UserForm} from "./src/components/UserForm";
+
 export default function App() {
     const [modalVisible, setModalVisible] = useState(false);
+    const [modalVisible2, setModalVisible2] = useState(false);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -20,12 +23,31 @@ export default function App() {
                 style={styles.btnNewUser}
                 onPress={() => setModalVisible(true)}
             >
-                <Text style={styles.titleButton}>Press Me</Text>
+                <Text style={styles.titleButton}>New User</Text>
+            </Pressable>
+
+            <Pressable 
+                style={styles.btnNewUser}
+                onPress={() => setModalVisible2(true)}
+            >
+                <Text style={styles.titleButton}>Background</Text>
             </Pressable>
 
             <Modal animationType="slide" visible={modalVisible}>
                 <Text>Modal</Text>
+                
+                <Pressable 
+                    style={styles.btnNewUser}
+                    onPress={() => setModalVisible2(false)}
+                  >
+                    <Text style={styles.titleButton}>Close Me</Text>
+                </Pressable>
             </Modal>
+
+            <Modal animationType="slide" visible={modalVisible2}>
+                <UserForm />
+            </Modal>
+
         </SafeAreaView>
     );
 }
